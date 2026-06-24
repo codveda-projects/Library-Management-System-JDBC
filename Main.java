@@ -3,53 +3,43 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         LibraryDAO dao = new LibraryDAO();
-        Scanner scanner = new Scanner(System.in);
-        boolean running = true;
+        Scanner sc = new Scanner(System.in);
 
-        while (running) {
-            System.out.println("\n=== Library Management System ===");
-            System.out.println("1. Add Book");
+        while (true) {
+            System.out.println("\nLibrary Menu:");
+            System.out.println("1. View Books");
             System.out.println("2. Borrow Book");
             System.out.println("3. Return Book");
-            System.out.println("4. View All Books");
-            System.out.println("5. Exit");
+            System.out.println("4. Exit");
             System.out.print("Choose an option: ");
 
-            int choice = scanner.nextInt();
+            int choice = sc.nextInt();
 
             switch (choice) {
-                case 1 -> {
-                    System.out.print("Enter Book ID: ");
-                    int bookId = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.print("Enter Title: ");
-                    String title = scanner.nextLine();
-                    System.out.print("Enter Author: ");
-                    String author = scanner.nextLine();
-                    dao.addBook(bookId, title, author);
-                }
-                case 2 -> {
+                case 1:
+                    dao.viewBooks();
+                    break;
+                case 2:
                     System.out.print("Enter User ID: ");
-                    int userId = scanner.nextInt();
+                    int userIdBorrow = sc.nextInt();
                     System.out.print("Enter Book ID: ");
-                    int bookId = scanner.nextInt();
-                    dao.borrowBook(userId, bookId);
-                }
-                case 3 -> {
+                    int bookIdBorrow = sc.nextInt();
+                    dao.borrowBook(userIdBorrow, bookIdBorrow);
+                    break;
+                case 3:
                     System.out.print("Enter User ID: ");
-                    int userId = scanner.nextInt();
+                    int userIdReturn = sc.nextInt();
                     System.out.print("Enter Book ID: ");
-                    int bookId = scanner.nextInt();
-                    dao.returnBook(userId, bookId);
-                }
-                case 4 -> dao.viewAllBooks();
-                case 5 -> {
-                    running = false;
-                    System.out.println("Exiting system. Goodbye!");
-                }
-                default -> System.out.println("Invalid choice. Try again.");
+                    int bookIdReturn = sc.nextInt();
+                    dao.returnBook(userIdReturn, bookIdReturn);
+                    break;
+                case 4:
+                    System.out.println("Goodbye!");
+                    sc.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice.");
             }
         }
-        scanner.close();
     }
 }
