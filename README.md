@@ -6,5 +6,8 @@ javac -cp ".;mysql-connector-java-5.1.42-bin.jar" *.java
 
 java -cp ".;mysql-connector-java-5.1.42-bin.jar" Main
 
+# Access through MariaDB MySQL client 
+password:
+
 
 
