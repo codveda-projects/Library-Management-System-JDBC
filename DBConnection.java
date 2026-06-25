@@ -7,8 +7,14 @@ public class DBConnection {
     private static final String USER = "javauser";
     private static final String PASSWORD = "mypassword";
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+   public static Connection getConnection() throws SQLException {
+    try {
+        Class.forName("com.mysql.jdbc.Driver"); // for Connector/J 5.1
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
     }
+    return DriverManager.getConnection(URL, USER, PASSWORD);
+}
+
 }
 
