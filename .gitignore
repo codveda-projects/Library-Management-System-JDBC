@@ -1,0 +1,14 @@
+# Ignore compiled files
+*.class
+/bin/
+/target/
+
+# Ignore IDE settings
+.classpath
+.project
+.settings/
+.vscode/
+.idea/
+
+# Ignore environment files
+.env
